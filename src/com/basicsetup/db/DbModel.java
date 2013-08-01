@@ -11,14 +11,14 @@ public interface DbModel {
 	 *
 	 * @return the id
 	 */
-	public int getId();
+	public long getId();
 
 	/**
 	 * Sets the id.
 	 *
 	 * @param id the new id
 	 */
-	public void setId(int id);
+	public void setId(long id);
 	
 	/**
 	 * returns table name to which the ordersModel corresponds.
