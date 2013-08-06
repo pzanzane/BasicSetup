@@ -1,5 +1,6 @@
 package com.basicsetup.db;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,15 +60,31 @@ public class DbHelper {
 	public static DbHelper getInstance(Context context,
 			DbConfiguration dbConfiguration) {
 		if (dbHelper == null) {
-			DATABASE_NAME = dbConfiguration.getDatabaseName();
-			models = dbConfiguration.getModels();
-			databasePath = dbConfiguration.getDatabasePath();
-			dbHelper = new DbHelper(context);
+			
+			instanciateDb(context, dbConfiguration);
+			
+		} else if (!(new File((dbConfiguration.getDatabasePath() == null || context.getDatabasePath(DATABASE_NAME)
+																					.getAbsolutePath()
+																					.equalsIgnoreCase(dbConfiguration.getDatabasePath())) ? context.getDatabasePath(DATABASE_NAME)
+																																					.getAbsolutePath()
+				: (dbConfiguration.getDatabasePath() + File.separator + dbConfiguration.getDatabaseName())).exists())) {
+			
+			dbHelper = null;
+			instanciateDb(context, dbConfiguration);
 		}
 
 		return dbHelper;
 	}
 
+	private static void instanciateDb(Context context,DbConfiguration dbConfiguration){
+		
+		DATABASE_NAME = dbConfiguration.getDatabaseName();
+		models = dbConfiguration.getModels();
+		databasePath = dbConfiguration.getDatabasePath();
+		dbHelper = new DbHelper(context);
+		
+	}
+	
 	/*
 	 * public DbHelper(Context mContext,List<DbModel> models) { this.context =
 	 * mContext; this.models = models; openHelper = new

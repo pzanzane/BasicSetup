@@ -23,6 +23,11 @@ public class CursorUtils {
 		return c.isNull(columnIndex) ? 0 : c.getInt(columnIndex);
 	}
 
+	public static Float extractFloatOrNull(Cursor c, String columnName) {
+		int columnIndex = c.getColumnIndex(columnName);
+		return c.isNull(columnIndex) ? null : Float.valueOf(c.getString(columnIndex));
+	}
+	
 	public static Double extractDoubleOrNull(Cursor c, String columnName) {
 		int columnIndex = c.getColumnIndex(columnName);
 		return c.isNull(columnIndex) ? null : c.getDouble(columnIndex);
