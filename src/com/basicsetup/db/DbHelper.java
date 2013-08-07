@@ -19,19 +19,23 @@ import android.util.Log;
  * 
  */
 public class DbHelper {
-	public static String DATABASE_NAME = "dubai_chamber_v01.db";
-	private final static int DATABASE_VERSION = 1;
-	private static List<DbModel> models;
+	public String databaseName;
+	private int databaseVersion;
+	private List<DbModel> models;
 	private Context context;
 	private SQLiteDatabase db;
 	private SQLiteStatement insertStmt;
 	private static OpenHelper openHelper;
-	private static String databasePath = null;
+	private String databasePath = null;
 
 	private static DbHelper dbHelper = null;
 
-	private DbHelper(Context context) {
+	private DbHelper(Context context,String dbPath,String dbName,int dbVersion,List<DbModel>models) {
 		this.context = context;
+		this.databasePath=dbPath;
+		this.databaseName=dbName;
+		this.databaseVersion=dbVersion;
+		
 		openHelper = new OpenHelper(this.context);
 		openHelper.close();
 		if (db != null && db.isOpen()) {
@@ -41,7 +45,7 @@ public class DbHelper {
 		if (databasePath == null) {
 			db = openHelper.getWritableDatabase();
 		} else {
-			db = SQLiteDatabase.openDatabase(databasePath + DATABASE_NAME,
+			db = SQLiteDatabase.openDatabase(databasePath + databaseName,
 					null, SQLiteDatabase.OPEN_READWRITE);
 		}
 		// Enable foreign key constraints
@@ -49,40 +53,30 @@ public class DbHelper {
 
 	}
 
-	public static DbHelper getInstance(Context context) {
-		if (dbHelper == null) {
-			dbHelper = new DbHelper(context);
-		}
-
-		return dbHelper;
-	}
-
 	public static DbHelper getInstance(Context context,
-			DbConfiguration dbConfiguration) {
-		if (dbHelper == null) {
-			
-			instanciateDb(context, dbConfiguration);
-			
-		} else if (!(new File((dbConfiguration.getDatabasePath() == null || context.getDatabasePath(DATABASE_NAME)
-																					.getAbsolutePath()
-																					.equalsIgnoreCase(dbConfiguration.getDatabasePath())) ? context.getDatabasePath(DATABASE_NAME)
-																																					.getAbsolutePath()
-				: (dbConfiguration.getDatabasePath() + File.separator + dbConfiguration.getDatabaseName())).exists())) {
+			IDbConfiguration dbConfiguration) {
+		if ((!isDatabaseExists(context, dbConfiguration.getDatabasePath(), dbConfiguration.getDatabaseName())) || dbHelper == null) {
 			
 			dbHelper = null;
-			instanciateDb(context, dbConfiguration);
-		}
+			dbHelper = new DbHelper(context, dbConfiguration.getDatabasePath(),
+					dbConfiguration.getDatabaseName(), dbConfiguration.getDatabaseVersion(),
+					dbConfiguration.getModels());
+ 		}  
 
 		return dbHelper;
 	}
+	
+	private static boolean isDatabaseExists(Context context,String databasePath,String databsaseName){
+		
+		File f = new File((databasePath == null || context
+				.getDatabasePath(databsaseName).getAbsolutePath()
+				.equalsIgnoreCase(databasePath)) ? context.getDatabasePath(
+				databasePath).getAbsolutePath() : (databasePath
+				+ File.separator + databsaseName));
 
-	private static void instanciateDb(Context context,DbConfiguration dbConfiguration){
-		
-		DATABASE_NAME = dbConfiguration.getDatabaseName();
-		models = dbConfiguration.getModels();
-		databasePath = dbConfiguration.getDatabasePath();
-		dbHelper = new DbHelper(context);
-		
+		boolean bool = f.exists();
+		f = null;
+		return bool;
 	}
 	
 	/*
@@ -286,7 +280,6 @@ public class DbHelper {
 			c = db.rawQuery("select * from " + table, null);
 			return c.moveToFirst();
 		} catch (Exception e) {
-			// throw new DAOException(e);
 			return false;
 		} finally {
 			if (c != null) {
@@ -310,7 +303,7 @@ public class DbHelper {
 		private String sql;
 
 		OpenHelper(Context context) {
-			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+			super(context, databaseName, null, databaseVersion);
 		}
 
 		@Override
@@ -329,7 +322,7 @@ public class DbHelper {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.d("upgrading database", DATABASE_NAME);
+			Log.d("upgrading database", databaseName);
 			if (models != null) {
 				for (DbModel query : models) {
 					db.execSQL("DROP TABLE IF EXISTS " + query.getTableName());
