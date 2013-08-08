@@ -35,6 +35,7 @@ public class DbHelper {
 		this.databasePath=dbPath;
 		this.databaseName=dbName;
 		this.databaseVersion=dbVersion;
+		this.models = models;
 		
 		openHelper = new OpenHelper(this.context);
 		openHelper.close();
@@ -77,11 +78,11 @@ public class DbHelper {
 	
 	private static boolean isDatabaseExists(Context context,String databasePath,String databsaseName){
 		
-		File f = new File((databasePath == null || context
-				.getDatabasePath(databsaseName).getAbsolutePath()
-				.equalsIgnoreCase(databasePath)) ? context.getDatabasePath(
-				databasePath).getAbsolutePath() : (databasePath
-				+ File.separator + databsaseName));
+		File f = new File((databasePath == null || context.getDatabasePath(databsaseName)
+															.getAbsolutePath()
+															.equalsIgnoreCase(databasePath)) ? context.getDatabasePath(databsaseName)
+																										.getAbsolutePath()
+				: (databasePath + File.separator + databsaseName));
 
 		boolean bool = f.exists();
 		f = null;
