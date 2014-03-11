@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class BitmapUtils {
+   
     public static void CopyStream(InputStream is, OutputStream os)
     {
         final int buffer_size=1024;
@@ -47,7 +48,7 @@ public class BitmapUtils {
        android.os.Environment.MEDIA_MOUNTED))
       cacheDir = new File(
         android.os.Environment.getExternalStorageDirectory(),
-        "Punchwise");
+        "appname");
      else
       cacheDir = context.getCacheDir();
      if (!cacheDir.exists())

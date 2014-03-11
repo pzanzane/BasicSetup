@@ -22,7 +22,7 @@ public class DbHelper {
 	public String databaseName;
 	private int databaseVersion;
 	private List<DbModel> models;
-	private Context context;
+//	private Context context;
 	private SQLiteDatabase db;
 	private SQLiteStatement insertStmt;
 	private static OpenHelper openHelper;
@@ -31,7 +31,7 @@ public class DbHelper {
 	private static DbHelper dbHelper = null;
 
 	private DbHelper(Context context,String databaseDir,String dbName,int dbVersion,List<DbModel>models) {
-		this.context = context;
+//		this.context = context;
 		this.databaseDir=databaseDir;
 		this.databaseName=dbName;
 		this.databaseVersion=dbVersion;

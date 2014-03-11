@@ -1,6 +1,6 @@
 package com.basicsetup.db;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface DbModel, to be implemented for mapping table with db table .
  */
@@ -33,4 +33,7 @@ public interface DbModel {
 	 * @return the creates the statement
 	 */
 	public String getCreateStatement();
+	
+	
+	public String getPrimaryKey();
 }
