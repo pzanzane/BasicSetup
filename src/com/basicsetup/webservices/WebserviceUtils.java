@@ -7,10 +7,11 @@ import java.util.List;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 
 import com.basicsetup.helper.AndroidVersionUtil;
 import com.basicsetup.helper.EncryptionUtils;
-import com.basicsetup.helper.ParcelableNameValuePair;
+import com.basicsetup.helper.PreferenceUtils;
 
 public class WebserviceUtils {
 
@@ -22,15 +23,23 @@ public class WebserviceUtils {
 		return activeNetwork != null && activeNetwork.isConnected();
 	}
 
-	public static WebserviceModel createWebModel(int reqFor, int priority,
-			int methodType, ArrayList<String> urlParams,
-			List<ParcelableNameValuePair> optionalParams) {
+	public static WebserviceModel createWebModel(Class callerClass, int reqFor,
+			int priority, int methodType, ArrayList<String> urlParams,
+			List<ParcelableNameValuePair> optionalParams,
+			boolean isSyncInBackground) {
+ 
+
+		Bundle extras = new Bundle();
+		extras.putString(WebserviceConstants.EXTRA_CLASS, callerClass.getName());
+
 		WebserviceModel webModel = new WebserviceModel();
 		webModel.setPriority(priority);
 		webModel.setRequestType(reqFor);
 		webModel.setListParams(optionalParams);
 		webModel.setUrlParams(urlParams);
 		webModel.setMethodeType(methodType);
+		webModel.setExtraData(extras);
+		webModel.setSyncInBackground(isSyncInBackground);
 		return webModel;
 	}
 

@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">BasicSetup</string>
+    <string name="app_id">BasicSetup</string>
+    <string name="app_secret">BasicSetup</string>
 
 </resources>

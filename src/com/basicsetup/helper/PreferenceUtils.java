@@ -7,7 +7,7 @@ import android.content.SharedPreferences.Editor;
 public class PreferenceUtils {
  
 	private static String PREFERENCE_NAME = "MenuslatePreferences"; 
-
+	public static String FACEBOOK_APP_TOKEN = "facebook_app_token";
 	public static void putString(Context ctx, String key, String value) {
 
 		SharedPreferences shared = ctx.getSharedPreferences(PREFERENCE_NAME,
