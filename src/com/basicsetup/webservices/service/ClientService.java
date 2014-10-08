@@ -115,18 +115,10 @@ public class ClientService extends Service {
 
 			String response = null;
 
-//			if (webModel.getRequestType() == WebserviceConstants.REQ_SING_SONG_SCORE) {
-//				 
-//				WebServiceSingASong singSongDownloader = new WebServiceSingASong();
-//				response = singSongDownloader.execute(webModel);
-//				 
-//			} else {
-
 				boolean retry = webModel.isSyncInBackground();
 
 				response = WebServiceHelper.execute(getApplicationContext(),
 						webModel, retry);
-//			}
 
 			Log.d("response", "request:" + webModel.getRequestType() + "->"
 					+ WebserviceUtils.getUrl(webModel));
@@ -167,14 +159,22 @@ public class ClientService extends Service {
 				errorMsg = result.getmErrorMsg();
 			Log.d("register", "flag : " + flag);
 
-			if (retryWebservice(webModel, flag, isCancelled())) {
-				Log.d("request", "retryCount : " + webModel.getRetryCount());
+			if (retryWebservice(webModel, flag, isCancelled())
+					|| webModel.isSyncInBackground()) {
+				/*
+				 * If request is sync in background then no need to send a
+				 * broadcast
+				 */
+				Log.d("request", "retryCount : " + webModel.getRetryCount()
+						+ " isSyncBackground:" + webModel.isSyncInBackground());
 				return;
 			}
 
 			Intent intent = new Intent();
 			intent.putExtras(webModel.getExtraData());
 			intent.putExtra(WebserviceConstants.EXTRA_ERR_MSG, errorMsg);
+			intent.putExtra(WebserviceConstants.EXTRA_SYNC_BACKGROUND,
+					webModel.isSyncInBackground());
 			switch (webModel.getRequestType()) {
 //			case WebserviceConstants.REQ_CALLERTUNE:
 //				

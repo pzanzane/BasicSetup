@@ -6,6 +6,7 @@ public class WebserviceConstants {
 	public static final String EXTRA_FLAG = "extra_flag"; 
 	public static final String EXTRA_CANCEL_THREAD = "extra_cancel_thread";
 	public static final String EXTRA_ERR_MSG = "extra_err_msg";
+	public static final String EXTRA_SYNC_BACKGROUND = "extra_sync_background";
 	public static final String EXTRA_CLASS = "EXTRA_CLASS";
 	
 	public static final int METHODE_TYPE_GET = 100, METHODE_TYPE_POST = 101,
