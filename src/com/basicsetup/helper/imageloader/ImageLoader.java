@@ -1,4 +1,11 @@
-package com.basicsetup.helper.imageloader;
+package com.decos.fixi.helpers.HelperImageLoader;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.util.Log;
+import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,43 +22,54 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.widget.ImageView;
-
 public class ImageLoader {
 
-	MemoryCache memoryCache = new MemoryCache();
-	FileCache fileCache;
-	private Map<ImageView, String> imageViews = Collections
+	private MemoryCache memoryCache = null;
+    private FileCache fileCache;
+	private Map<ImageView, String> mapImageViews = Collections
 			.synchronizedMap(new WeakHashMap<ImageView, String>());
-	ExecutorService executorService;
-	int stub_id = -1;
-	Context context;
-	Handler handler;
+    private ExecutorService executorService;
+    private int defaultImageId = -1;
+    private Context context;
+    private Handler handler;
 
-	public ImageLoader(Context context, int stub_id) {
-		fileCache = new FileCache(context);
-		this.stub_id = stub_id;
+    /*
+     * Caching is Enabled By Default
+     * Images Will be Compressed if caching is enabled
+     */
+    private boolean cachingEnabled = true;
+
+    public static ImageLoader getSingleton(Context context,boolean isCacheEnabled,String cacheDir, int defaultImageId){
+            return new ImageLoader(context,isCacheEnabled,cacheDir,defaultImageId);
+    }
+
+	private ImageLoader(Context context, String cacheDir,int defaultImageId) {
+        memoryCache = new MemoryCache();
+		fileCache = new FileCache(context,cacheDir);
+		this.defaultImageId = defaultImageId;
 		this.context = context;
 		executorService = Executors.newFixedThreadPool(5);
 		handler = new Handler();
 	}
+    private ImageLoader(Context context,boolean cachingEnabled,
+                       String cacheDir,int defaultImageId) {
+        this(context,cacheDir,defaultImageId);
+        this.cachingEnabled=cachingEnabled;
+    }
 
-	public void displayImage(String url, ImageView imageView) {
-		imageViews.put(imageView, url);
+    public void displayImage(String url, ImageView imageView) {
+		mapImageViews.put(imageView, url);
 		Bitmap bitmap = memoryCache.get(url);
 		if (bitmap != null) {
 			// Log.d(getClass().getCanonicalName(),
 			// "bitmap found in memoroy chache.");
 			imageView.setImageBitmap(bitmap);
+            Log.d("IMAGELOADER","IMAGE From MemoryCache");
 		} else {
 			// Log.d(getClass().getCanonicalName(),
 			// "bitmap NOT found in memoroy chache. checking file cache...");
 			queuePhoto(url, imageView);
-			imageView.setImageResource(stub_id);
+			imageView.setImageResource(defaultImageId);
 		}
 	}
 
@@ -65,7 +83,8 @@ public class ImageLoader {
 
 		// from SD cache
 		Bitmap b = decodeFile(f);
-		if (b != null) {
+        if (b != null) {
+            Log.d("IMAGELOADER","ImageFrom FileCache");
 			// Log.d(getClass().getCanonicalName(),
 			// "bitmap found in file cache.");
 			return b;
@@ -76,8 +95,14 @@ public class ImageLoader {
 		// from web
 		try {
 			Bitmap bitmap = null;
-			f=fetch(f,url);
-			bitmap = decodeFile(f);
+
+            if(cachingEnabled){
+                f=fetch(f,url);
+                bitmap = decodeFile(f);
+            }else{
+                bitmap = BitmapUtils.bitmapFromInputStream(url);
+            }
+            Log.d("IMAGELOADER","ImageFrom Server");
 			return bitmap;
 		} catch (Throwable ex) {
 			ex.printStackTrace();
@@ -86,48 +111,52 @@ public class ImageLoader {
 			return null;
 		}
 	}
-	
-	public static File fetch(File f,String url) throws IOException{
-		 
-		URL imageUrl = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) imageUrl
-				.openConnection();
-		conn.setConnectTimeout(30000);
-		conn.setReadTimeout(30000);
-		conn.setInstanceFollowRedirects(true);
-		InputStream is = conn.getInputStream();
-		OutputStream os = new FileOutputStream(f);
-		BitmapUtils.CopyStream(is, os);
-		os.close();
-		
-		return f;
-		
-	}
-	// decodes image and scales it to reduce memory consumption
+
+    public static File fetch(File f, String url) throws IOException {
+
+        URL imageUrl = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) imageUrl
+                .openConnection();
+        conn.setConnectTimeout(30000);
+        conn.setReadTimeout(30000);
+        conn.setInstanceFollowRedirects(true);
+        InputStream is = conn.getInputStream();
+
+        OutputStream os = new FileOutputStream(f);
+        BitmapUtils.CopyStream(is, os);
+        os.close();
+
+        return f;
+    }
+
+
+    // decodes image and scales it to reduce memory consumption
 	private Bitmap decodeFile(File f) {
 		try {
-			// decode image size
-			BitmapFactory.Options o = new BitmapFactory.Options();
-			o.inJustDecodeBounds = true;
-			BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+                // decode image size
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inJustDecodeBounds = true;
+                BitmapFactory.decodeStream(new FileInputStream(f), null, o);
 
-			// Find the correct scale value. It should be the power of 2.
-			final int REQUIRED_SIZE = 256;
-			int width_tmp = o.outWidth, height_tmp = o.outHeight;
-			int scale = 1;
-			while (true) {
-				if (width_tmp / 2 < REQUIRED_SIZE
-						|| height_tmp / 2 < REQUIRED_SIZE)
-					break;
-				width_tmp /= 2;
-				height_tmp /= 2;
-				scale *= 2;
-			}
+                // Find the correct scale value. It should be the power of 2.
+                final int REQUIRED_SIZE = 256;
+                int width_tmp = o.outWidth, height_tmp = o.outHeight;
+                int scale = 1;
+                while (true) {
+                    if (width_tmp / 2 < REQUIRED_SIZE
+                            || height_tmp / 2 < REQUIRED_SIZE)
+                        break;
+                    width_tmp /= 2;
+                    height_tmp /= 2;
+                    scale *= 2;
+                }
 
-			// decode with inSampleSize
-			BitmapFactory.Options o2 = new BitmapFactory.Options();
-			o2.inSampleSize = scale;
-			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+
+                    // decode with inSampleSize
+                    BitmapFactory.Options o2 = new BitmapFactory.Options();
+                    o2.inSampleSize = scale;
+                    return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+
 		} catch (FileNotFoundException e) {
 		}
 		return null;
@@ -146,7 +175,6 @@ public class ImageLoader {
 
 	class PhotosLoader implements Runnable {
 		PhotoToLoad photoToLoad;
-
 		PhotosLoader(PhotoToLoad photoToLoad) {
 			this.photoToLoad = photoToLoad;
 		}
@@ -156,8 +184,11 @@ public class ImageLoader {
 			if (imageViewReused(photoToLoad))
 				return;
 			Bitmap bmp = getBitmap(photoToLoad.url);
-			memoryCache.put(photoToLoad.url, bmp);
-			if (imageViewReused(photoToLoad))
+            if(cachingEnabled) {
+                memoryCache.put(photoToLoad.url, bmp);
+            }
+
+            if (imageViewReused(photoToLoad))
 				return;
 			BitmapDisplayer bd = new BitmapDisplayer(bmp, photoToLoad);
 			// Log.d(getClass().getCanonicalName(),
@@ -170,7 +201,7 @@ public class ImageLoader {
 	}
 
 	boolean imageViewReused(PhotoToLoad photoToLoad) {
-		String tag = imageViews.get(photoToLoad.imageView);
+		String tag = mapImageViews.get(photoToLoad.imageView);
 		if (tag == null || !tag.equals(photoToLoad.url))
 			return true;
 		return false;
@@ -193,7 +224,7 @@ public class ImageLoader {
 				photoToLoad.imageView.setImageBitmap(bitmap);
 			else
 				photoToLoad.imageView.setImageBitmap(BitmapFactory
-						.decodeResource(context.getResources(), stub_id));
+						.decodeResource(context.getResources(), defaultImageId));
 		}
 	}
 

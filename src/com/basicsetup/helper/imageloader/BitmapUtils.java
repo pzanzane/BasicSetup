@@ -1,14 +1,15 @@
-package com.basicsetup.helper.imageloader;
+package com.decos.fixi.helpers.HelperImageLoader;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class BitmapUtils {
    
@@ -28,54 +29,7 @@ public class BitmapUtils {
         }
         catch(Exception ex){ex.printStackTrace();}
     }
-    
-    /**
-     * Get Bitmap using InputStream and save it name card id
-     * 
-     * @param context
-     * @param inputStream
-     * @param id
-     *            cardId
-     * @return Bitmap
-     */
-    public static Bitmap getBitmap(Context context, InputStream inputStream/*,
-      String id*/) {
 
-     File cacheDir;
-
-     // Find the dir to save cached images
-     if (android.os.Environment.getExternalStorageState().equals(
-       android.os.Environment.MEDIA_MOUNTED))
-      cacheDir = new File(
-        android.os.Environment.getExternalStorageDirectory(),
-        "appname");
-     else
-      cacheDir = context.getCacheDir();
-     if (!cacheDir.exists())
-      cacheDir.mkdirs();
-
-     File f = new File(cacheDir, "banner");
-
-     // from SD cache
-     // Bitmap b = decodeFile(f);
-     // if (b != null)
-     // return b;
-
-     // from web
-     try {
-      Bitmap bitmap = null;
-      OutputStream os = new FileOutputStream(f);
-      CopyStream(inputStream, os);
-      os.close();
-      // bitmap = decodeFile(f);
-      bitmap = decodeF(f);
-      return bitmap;
-     } catch (Exception ex) {
-      ex.printStackTrace();
-      return null;
-     }
-    }
-    
     private static Bitmap decodeF(File f) {
     	  Bitmap b = null;
     	  try {
@@ -98,4 +52,20 @@ public class BitmapUtils {
     	  return b;
 
     	 }
+
+    public static Bitmap bitmapFromInputStream(String url) throws IOException {
+
+        URL imageUrl = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) imageUrl
+                .openConnection();
+        conn.setConnectTimeout(30000);
+        conn.setReadTimeout(30000);
+        conn.setInstanceFollowRedirects(true);
+        InputStream is = conn.getInputStream();
+
+        if(is == null){
+            return null;
+        }
+       return  BitmapFactory.decodeStream(is);
+    }
 }

@@ -1,22 +1,21 @@
-package com.basicsetup.helper.imageloader;
-
-import java.io.File;
+package com.decos.fixi.helpers.HelperImageLoader;
 
 import android.content.Context;
+
+import java.io.File;
 
 public class FileCache {
 
 	private File cacheDir;
 
-	public FileCache(Context context) {
+	public FileCache(Context context,String cacheDirPath) {
 		// Find the dir to save cached images
 		if (android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED))
-			cacheDir = new File(
-					android.os.Environment.getExternalStorageDirectory(),
-					"chamber");
-		else
-			cacheDir = context.getFilesDir();
+				android.os.Environment.MEDIA_MOUNTED)) {
+            cacheDir = new File(cacheDirPath);
+        }else{
+            cacheDir = context.getFilesDir();
+        }
 		if (!cacheDir.exists())
 			cacheDir.mkdirs();
 	}
