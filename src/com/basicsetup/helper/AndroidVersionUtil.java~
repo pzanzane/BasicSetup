@@ -59,30 +59,4 @@ public class AndroidVersionUtil {
 		return sb.toString();
 
 	}
-
-    public static int getVersionCode(Context context){
-
-        PackageManager manager = context.getPackageManager();
-        PackageInfo info = null;
-        try {
-            info = manager.getPackageInfo(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return info.versionCode;
-    }
-
-    public static String getVersionName(Context context){
-
-        PackageManager manager = context.getPackageManager();
-        PackageInfo info = null;
-        try {
-            info = manager.getPackageInfo(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return info.versionName;
-    }
 }
