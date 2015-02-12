@@ -35,14 +35,14 @@ public class HelperGoogleLocation implements ILocationHelper,
     private LocationCallBacks callBacks = null;
     private LocationRequest mLocationRequest = null;
     private GoogleApiClient mGoogleApiClient = null;
-    private int mAccuracy = -1;
+    private int mPriority = -1;
 
     public HelperGoogleLocation(Context context,
                                 com.app.poclocation.poclocation.Locations.LocationCallBacks callBacks,
-                                int locationAccuracy) {
+                                int locationPriority) {
         this.context = context;
         this.callBacks = callBacks;
-        this.mAccuracy = locationAccuracy;
+        this.mPriority = locationPriority;
 
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API)
@@ -59,7 +59,7 @@ public class HelperGoogleLocation implements ILocationHelper,
         } else {
 
             mLocationRequest = LocationRequest.create();
-            mLocationRequest.setPriority(mAccuracy);
+            mLocationRequest.setPriority(mPriority);
             mLocationRequest.setInterval(2000);
             mLocationRequest.setNumUpdates(1);
             mGoogleApiClient.connect();
