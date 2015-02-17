@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AutofitTextView"><attr format="dimension" name="minTextSize"/><attr format="float" name="precision"/><attr format="boolean" name="sizeToFit"/></declare-styleable>
+    <declare-styleable name="MyCustomView"><attr name="android:entries"/></declare-styleable>
+    <declare-styleable name="PieChart"><attr format="boolean" name="autoCenterPointerInSlice"/><attr format="float" name="highlightStrength"/><attr format="color" name="labelColor"/><attr format="dimension" name="labelHeight"/><attr format="enum" name="labelPosition"><enum name="left" value="0"/><enum name="right" value="1"/></attr><attr format="dimension" name="labelWidth"/><attr format="dimension" name="labelY"/><attr format="integer" name="pieRotation"/><attr format="dimension" name="pointerRadius"/><attr format="boolean" name="showText"/></declare-styleable>
+    <declare-styleable name="RhythmAttrib"><attr format="color" name="text_color"/><attr format="dimension" name="text_size"/><attr format="color" name="progress_bar_color"/><attr format="color" name="progress_path_color"/><attr format="dimension" name="progressbar_thickness"/><attr format="dimension" name="progressbar_path_thickness"/><attr format="dimension" name="progressbar_arc_padding"/><attr format="dimension" name="progressbar_margin"/><attr format="color" name="progressbar_cap_startcolor"/><attr format="color" name="progressbar_cap_endcolor"/><attr format="dimension" name="progressbar_cap_radius"/><attr format="dimension" name="progressbar_gap"/><attr format="color" name="filled_circle_color"/><attr format="color" name="progressbar_cap_color"/><attr format="reference" name="image_src"/><attr format="reference" name="outer_image_src"/><attr format="reference" name="inner_image_src"/><attr format="string" name="font_type"/><attr format="dimension" name="progressbar_length"/><attr format="color" name="progressbar_win_color"/><attr format="color" name="progressbar_loss_color"/><attr format="color" name="progressbar_draw_color"/><attr format="integer" name="total_win"/><attr format="integer" name="total_loss"/><attr format="integer" name="total_draw"/><attr format="string" name="switch_on_text"/><attr format="string" name="switch_off_text"/><attr format="dimension" name="status_indicator_stroke_width"/><attr format="dimension" name="status_indicator_length"/><attr format="dimension" name="status_indicator_cap_radius"/><attr format="dimension" name="status_result_text_size"/><attr format="dimension" name="status_text_indicator_gap"/><attr format="dimension" name="status_circle_height_padding"/><attr format="dimension" name="question_number_text_size"/><attr format="dimension" name="white_circle_radius"/><attr format="dimension" name="indicator_circle_radius"/><attr format="dimension" name="bar_width"/><attr format="dimension" name="connector_width"/><attr format="dimension" name="question_number_text_margin_top"/></declare-styleable>
+    <declare-styleable name="SurfaceCustomView"><attr name="android:entries"/></declare-styleable>
+    <declare-styleable name="SwipeListView"><attr format="boolean" name="swipeOpenOnLongPress"/><attr format="integer" name="swipeAnimationTime"/><attr format="dimension" name="swipeOffsetLeft"/><attr format="dimension" name="swipeOffsetRight"/><attr format="boolean" name="swipeCloseAllItemsWhenMoveList"/><attr format="reference" name="swipeFrontView"/><attr format="reference" name="swipeBackView"/><attr format="enum" name="swipeMode"><enum name="none" value="0"/><enum name="both" value="1"/><enum name="right" value="2"/><enum name="left" value="3"/></attr><attr format="enum" name="swipeActionLeft"><enum name="reveal" value="0"/><enum name="dismiss" value="1"/><enum name="choice" value="2"/></attr><attr format="enum" name="swipeActionRight"><enum name="reveal" value="0"/><enum name="dismiss" value="1"/><enum name="choice" value="2"/></attr><attr format="reference" name="swipeDrawableChecked"/><attr format="reference" name="swipeDrawableUnchecked"/></declare-styleable>
+    <!-- From: file:/home/pankaj/PankajWorkspace/Projects/BasicSetup/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_id">BasicSetup</string>
+    <string name="app_name">BasicSetup</string>
+    <string name="app_secret">BasicSetup</string>
+    <!-- From: file:/home/pankaj/PankajWorkspace/Projects/BasicSetup/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>
