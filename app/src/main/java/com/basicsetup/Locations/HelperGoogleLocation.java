@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.app.poclocation.poclocation.AsyncTaskUtil;
-import com.app.poclocation.poclocation.HelperAndroidVersion;
-import com.app.poclocation.poclocation.R;
-import com.app.poclocation.poclocation.ToastUtils;
+import com.basicsetup.R;
+import com.basicsetup.helper.AndroidVersionUtil;
+import com.basicsetup.helper.AsyncTaskUtils;
+import com.basicsetup.helper.ToastUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,7 +38,7 @@ public class HelperGoogleLocation implements ILocationHelper,
     private int mPriority = -1;
 
     public HelperGoogleLocation(Context context,
-                                com.app.poclocation.poclocation.Locations.LocationCallBacks callBacks,
+                                LocationCallBacks callBacks,
                                 int locationPriority) {
         this.context = context;
         this.callBacks = callBacks;
@@ -110,8 +110,8 @@ public class HelperGoogleLocation implements ILocationHelper,
             // Display the current location in the UI
             if (location != null) {
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                AsyncTaskUtil.execute(
-                        new com.app.poclocation.poclocation.Locations.AsyncTaskGetAddress(
+                AsyncTaskUtils.execute(
+                        new AsyncTaskGetAddress(
                                 context,
                                 location.getAccuracy(),
                                 iGetAddress
@@ -145,7 +145,7 @@ public class HelperGoogleLocation implements ILocationHelper,
         }
     }
 
-    private com.app.poclocation.poclocation.Locations.AsyncTaskGetAddress.IGetAddress iGetAddress = new com.app.poclocation.poclocation.Locations.AsyncTaskGetAddress.IGetAddress() {
+    private AsyncTaskGetAddress.IGetAddress iGetAddress = new AsyncTaskGetAddress.IGetAddress() {
         @Override
         public void fetchedAddress(LatLng location,
                                    String longAddress,
@@ -201,8 +201,9 @@ public class HelperGoogleLocation implements ILocationHelper,
         int locationMode = -1;
         String locationProviders;
 
-        if (HelperAndroidVersion.getAndroidVersion()>= Build.VERSION_CODES.KITKAT){
+        if (AndroidVersionUtil.getAndroidVersion()>= Build.VERSION_CODES.KITKAT){
             try {
+
                 locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
 
             } catch (Settings.SettingNotFoundException e) {

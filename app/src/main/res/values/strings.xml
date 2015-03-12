@@ -3,5 +3,6 @@
     <string name="app_name">BasicSetup</string>
     <string name="app_id">BasicSetup</string>
     <string name="app_secret">BasicSetup</string>
-
+    <string name="no_address_found">No Address Found</string>
+    <string name="no_google_play_Service">No Google Play Services found</string>
 </resources>
