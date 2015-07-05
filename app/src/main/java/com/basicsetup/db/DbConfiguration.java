@@ -1,9 +1,11 @@
 package com.basicsetup.db;
 
+import android.content.Context;
+
+import com.basicsetup.db.Models.ModelDemo;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import android.content.Context;
 
 public class DbConfiguration implements IDbConfiguration {
 
@@ -16,6 +18,7 @@ public class DbConfiguration implements IDbConfiguration {
 	public static DbConfiguration getInstance(Context context) {
 
 		List<DbModel> list = new ArrayList<DbModel>();
+		list.add(new ModelDemo());
 	 
 
 		DbConfiguration config = new DbConfiguration();
