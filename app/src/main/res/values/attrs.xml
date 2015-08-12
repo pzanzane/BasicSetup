@@ -111,5 +111,7 @@
         <attr name="precision" format="float" />
         <attr name="sizeToFit" format="boolean" />
     </declare-styleable>
-
+    <declare-styleable name="FontText">
+        <attr name="fontType" format="string"/>
+    </declare-styleable>
 </resources>

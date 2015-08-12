@@ -1,33 +1,26 @@
-package com.fact24poc.fact24poc.helpers;
+package com.basicsetup.helper;
 
+import android.content.ContentValues;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -36,6 +29,24 @@ import java.util.Scanner;
  */
 public class HTTPHelper {
 
+    public static class ResponseObject{
+
+        private String strResponse;
+        private int statusCode;
+
+        public ResponseObject(String strResponse,int statusCode){
+            this.strResponse=new String(strResponse);
+            this.statusCode=statusCode;
+        }
+
+        public String getStrResponse() {
+            return new String(strResponse);
+        }
+
+        public int getStatusCode() {
+            return statusCode;
+        }
+    }
 
     /** The Constant CONNECTION_TIMEOUT. */
     public static final int CONNECTION_TIMEOUT = 10 * 1000;
@@ -43,137 +54,238 @@ public class HTTPHelper {
     /** The Constant WAIT_RESPONSE_TIMEOUT. */
     public static final int WAIT_RESPONSE_TIMEOUT = 20 * 1000;
 
+    /**  CONTENT TYPE **/
+    public static final String CONTENT_TYPE_JSON = "application/json";
+    public static final String CONTENT_TYPE_URLENCODE = "application/x-www-form-urlencoded";
 
-    InputStream inputStream = null;
-    HttpClient httpClient = null;
-    HttpResponse httpResponse = null;
+    private String contentType = null;
 
-    public String executeHttpPost(String url,
-                                   List<? extends NameValuePair> params)
-            throws URISyntaxException, ClientProtocolException, IOException, JSONException {
-
-        Log.d("WASTE", "executeHTTPPost");
-        httpClient = getThreadSafeHttpClient();
-        HttpPost httpPost = new HttpPost(new URI(url));
-
-        httpPost.setHeader(HTTP.CONTENT_TYPE,"application/json" );
-
-        JSONObject obj = new JSONObject();
-        for(NameValuePair pair:params){
-            obj.put(pair.getName(),pair.getValue());
-        }
-        StringEntity stringEntity = new StringEntity(obj.toString());
-
-        httpPost.setEntity(stringEntity);
-        httpResponse = httpClient.execute(httpPost);
-        inputStream = httpResponse.getEntity().getContent();
-
-        String strResponse = convertStreamToString(inputStream);
-
-        return strResponse;
+    public HTTPHelper(String contentType){
+        this.contentType=contentType;
     }
 
-    public String executeHttpPut(String url,
-                                  List<? extends NameValuePair> params)
-            throws URISyntaxException, ClientProtocolException, IOException {
+    public ResponseObject executeHttpPut(String url,ArrayList<String> urlParams,
+                                  ContentValues params)
+            throws URISyntaxException, UnsupportedEncodingException {
 
-        httpClient = getThreadSafeHttpClient();
-        HttpPut httpPut = new HttpPut(new URI(url));
-        httpPut.setEntity(new UrlEncodedFormEntity(params));
-        httpResponse = httpClient.execute(httpPut);
-        inputStream = httpResponse.getEntity().getContent();
+        ResponseObject responseObject = null;
 
-        String strResponse = convertStreamToString(inputStream);
+        String strResponse = null;
 
-        return strResponse;
-    }
+        url+=formatUrlParams(urlParams);
 
-    public String executeHttpGet(String url, ArrayList<String> urlParams,
-                                  List<? extends NameValuePair> params)
-            throws URISyntaxException, ClientProtocolException, IOException {
+        URL urlConn = null;
+        try {
 
-        String urlParameters = StringUtils.getAppendedString(
-                urlParams.toArray(new String[urlParams.size()]))
-                .replaceAll(",", "/");
+            byte[] postData = null;
+            if(params!=null){
 
-        if(!TextUtils.isEmpty(urlParameters)){
-            url+="/"+urlParameters;
+                if(contentType.equalsIgnoreCase(CONTENT_TYPE_JSON)){
+                    postData = jsonOptionParams(params).getBytes(Charset.forName("UTF-8"));
+                }else if(contentType.equalsIgnoreCase(CONTENT_TYPE_URLENCODE)){
+                    postData = formatOptionParams(params).getBytes(Charset.forName("UTF-8"));
+                }
+
+            }
+
+            Log.d("WASTE", "url:" + url);
+            urlConn = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) urlConn.openConnection();
+
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+            urlConnection.setRequestMethod("PUT");
+            urlConnection.setRequestProperty("Content-Type", contentType);
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestProperty("Content-Length", String.valueOf(postData.length));
+
+            DataOutputStream os = new DataOutputStream(urlConnection.getOutputStream());
+            os.write(postData);
+            os.flush();
+
+            int statusCode = urlConnection.getResponseCode();
+            Log.d("WASTE","statusCode:"+statusCode);
+
+            InputStream inn = null;
+            if(statusCode!=HttpURLConnection.HTTP_OK){
+                inn = urlConnection.getErrorStream();
+            }else{
+                inn = urlConnection.getInputStream();
+
+            }
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(inn));
+
+            String inputLine;
+            StringBuffer buffResponse = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                buffResponse.append(inputLine);
+            }
+            in.close();
+            strResponse = buffResponse.toString();
+            urlConnection.disconnect();
+
+            responseObject = new ResponseObject(strResponse,statusCode);
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        String strParams = "";
-        if (params != null && params.size()>0) {
-            if (!url.endsWith("?"))
-                url += "?";
-            strParams = URLEncodedUtils.format(params, "utf-8");
-        }
-        httpClient = getThreadSafeHttpClient();
-        HttpGet httpGet = new HttpGet(new URI(url + strParams));
-        httpResponse = httpClient.execute(httpGet);
-        inputStream = httpResponse.getEntity().getContent();
-
-        String strResponse = convertStreamToString(inputStream);
-
-        return strResponse;
+        return responseObject;
     }
 
-    private void consumeClinet() {
+    public ResponseObject executeHttpPost(String url,ArrayList<String> urlParams,
+                                   ContentValues params)
+            throws URISyntaxException, UnsupportedEncodingException {
 
-			/*
-			 * The entity needs to be consumed completely in order to re-use the
-			 * connection with keep-alive.
-			 */
-        if (httpResponse != null) {
-            try {
-                httpResponse.getEntity().consumeContent();
-                // Log.i("***** HTTP RESPONSE ENTITY CONSUMED *****");
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                // Log.e("***** ERROR CONSUMING HTTP RESPONSE ENTITY *****");
-                // Log.e(e);
-                e.printStackTrace();
+        String strResponse = null;
+        ResponseObject responseObject=null;
+
+        url+=formatUrlParams(urlParams);
+
+        URL urlConn = null;
+        try {
+
+            byte[] postData = null;
+            if(params!=null){
+
+                if(contentType.equalsIgnoreCase(CONTENT_TYPE_JSON)){
+                    postData = jsonOptionParams(params).getBytes(Charset.forName("UTF-8"));
+                }else if(contentType.equalsIgnoreCase(CONTENT_TYPE_URLENCODE)){
+                    postData = formatOptionParams(params).getBytes(Charset.forName("UTF-8"));
+                }
+
+            }
+
+
+            Log.d("WASTE", "url:" + url);
+            urlConn = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) urlConn.openConnection();
+
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", contentType);
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestProperty("Content-Length", String.valueOf(postData.length));
+
+            DataOutputStream os = new DataOutputStream(urlConnection.getOutputStream());
+            os.write(postData);
+            os.flush();
+
+            int responseCode = urlConnection.getResponseCode();
+
+            Log.d("MESSAGE","Mess::"+urlConnection.getResponseMessage());
+
+            InputStream inn = null;
+            if(responseCode!=HttpURLConnection.HTTP_OK){
+                inn = urlConnection.getErrorStream();
+            }else{
+                inn = urlConnection.getInputStream();
+
+            }
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(inn));
+
+            String inputLine;
+            StringBuffer buffResponse = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                buffResponse.append(inputLine);
+            }
+            in.close();
+            strResponse = buffResponse.toString();
+            Log.d("WASTE", "PostREsponse:" + strResponse);
+            urlConnection.disconnect();
+
+            responseObject = new ResponseObject(strResponse,responseCode);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return responseObject;
+    }
+
+    public ResponseObject executeHttpGet(String url, ArrayList<String> urlParams,
+                                 ContentValues params)
+            throws URISyntaxException, UnsupportedEncodingException {
+
+        String strResponse = null;
+        ResponseObject responseObject = null;
+
+        url+=formatUrlParams(urlParams);
+
+        if(params!=null){
+            String strParams = "";
+            if (params != null && params.size()>0) {
+                if (!url.endsWith("?"))
+                    url += "?";
+                strParams = formatOptionParams(params);
+                url += strParams;
             }
         }
 
-			/*
-			 * Shut down HttpClient
-			 */
-        if (httpClient != null) {
-            httpClient.getConnectionManager().shutdown();
-            // Log.i("***** HTTP CONNECTION SHUTDOWN *****");
-        }
 
-			/*
-			 * Close input stream
-			 */
-        if (inputStream != null) {
-            try {
-                inputStream.close();
-                // Log.i("***** INPUTSTREAM CLOSED *****");
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                // Log.e("ERROR CLOSING INPUTSTREAM");
-                // Log.e(e);
-                e.printStackTrace();
+        URL urlConn = null;
+        try {
+
+            urlConn = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) urlConn.openConnection();
+
+            urlConnection.setConnectTimeout(30000);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type", contentType);
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setDoInput(true);
+            urlConnection.setDoOutput(true);
+
+            int statusCode = urlConnection.getResponseCode();
+            Log.d("WASTE", "url:"+url+"\n"+"responseCode:" + statusCode);
+
+            InputStream inn = null;
+            if(statusCode!=HttpURLConnection.HTTP_OK){
+                inn = urlConnection.getErrorStream();
+            }else{
+                inn = urlConnection.getInputStream();
+
             }
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(inn));
+
+            String inputLine;
+            StringBuffer buffResponse = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                buffResponse.append(inputLine);
+            }
+            in.close();
+            strResponse = buffResponse.toString();
+            urlConnection.disconnect();
+
+            responseObject = new ResponseObject(strResponse,statusCode);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-    }
-
-    private static HttpClient getThreadSafeHttpClient() {
-
-        HttpClient client = new DefaultHttpClient();
-
-        ClientConnectionManager mgr = client.getConnectionManager();
-
-        HttpParams params = client.getParams();
-        HttpConnectionParams.setConnectionTimeout(params, CONNECTION_TIMEOUT);
-        HttpConnectionParams.setSoTimeout(params, WAIT_RESPONSE_TIMEOUT);
-        HttpConnectionParams.setTcpNoDelay(params, true);
-
-        client = new DefaultHttpClient(new ThreadSafeClientConnManager(params,
-                                                                       mgr.getSchemeRegistry()), params);
-
-        return client;
+        return responseObject;
     }
 
     public static String convertStreamToString(InputStream streamToConvert) {
@@ -183,6 +295,64 @@ public class HTTPHelper {
         } catch (NoSuchElementException e) {
             return null;
         }
+    }
+
+    private static String formatOptionParams(ContentValues values) throws UnsupportedEncodingException {
+
+        //If "Content-Type"="application/x-www-form-urlencoded" use this methode
+
+        String formatedString = null;
+        if(values!=null && values.size()>0){
+
+            formatedString = "";
+
+            Iterator<String> keySet = values.keySet().iterator();
+
+            while (keySet.hasNext()){
+                String key = keySet.next();
+                String val = values.getAsString(key);
+                formatedString+=URLEncoder.encode(key,"UTF-8")+"="+URLEncoder.encode(val,"UTF-8")+"&";
+            }
+
+            formatedString = formatedString.substring(0, formatedString.length() - 1);
+
+        }
+        return formatedString;
+    }
+
+    private static String formatUrlParams(ArrayList<String> urlParams) throws UnsupportedEncodingException {
+
+        if(urlParams !=null){
+
+            String urlParameters = StringUtils.getAppendedString(
+                    urlParams.toArray(new String[urlParams.size()])
+            )
+                    .replaceAll(",", "/");
+
+            if(!TextUtils.isEmpty(urlParameters)){
+                return "/"+urlParameters;
+            }
+        }
+    return "";
+    }
+    private static String jsonOptionParams(ContentValues values) throws UnsupportedEncodingException, JSONException {
+
+        JSONObject jsonObject = new JSONObject();
+        if(values!=null && values.size()>0){
+
+
+            Iterator<String> keySet = values.keySet().iterator();
+
+            while (keySet.hasNext()){
+                String key = keySet.next();
+                String val = values.getAsString(key);
+                jsonObject.put(key,val);
+            }
+
+            Log.d("WASTE","jsonObject::"+jsonObject);
+
+        }
+        return jsonObject.toString();
     }
 }
 
