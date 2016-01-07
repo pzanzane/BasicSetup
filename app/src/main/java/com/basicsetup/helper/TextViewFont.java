@@ -1,17 +1,17 @@
-package com.basicsetup.helper;
+package asia.rewardeagle.rewardeagle.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.TextView;
-
-import com.basicsetup.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import asia.rewardeagle.rewardeagle.R;
 
 /**
  * Created by pankaj on 6/8/15.
@@ -19,6 +19,7 @@ import java.util.Map;
 public class TextViewFont extends TextView {
 
     public static Map<String,Typeface> mapType = new HashMap<String,Typeface>();
+    private String mSelectedFontName = null,mDefaultFontName=null;
 
     public TextViewFont(Context context) {
         this(context, null);
@@ -39,15 +40,34 @@ public class TextViewFont extends TextView {
         if(typedArray!=null){
 
             String fontAsset = typedArray.getString(R.styleable.FontText_fontType);
+            mSelectedFontName = typedArray.getString(R.styleable.FontText_selectStateFontType);
+            mDefaultFontName = fontAsset;
+            setFontAsset(mDefaultFontName);
+        }
+    }
 
-            if(!TextUtils.isEmpty(fontAsset)){
-                Typeface typeface = mapType.get(fontAsset);
-                if(typeface == null){
-                    typeface =  Typeface.createFromAsset(context.getAssets(),fontAsset);
-                    mapType.put(fontAsset,typeface);
-                }
-                setTypeface(typeface);
+    private void setFontAsset(String fontName){
+        if(!TextUtils.isEmpty(fontName)){
+            Typeface typeface = mapType.get(fontName);
+            if(typeface == null){
+                typeface =  Typeface.createFromAsset(getContext().getAssets(),fontName);
+                mapType.put(fontName,typeface);
             }
+            setTypeface(typeface);
+        }
+    }
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+
+        if(!TextUtils.isEmpty(mSelectedFontName)){
+
+            if(selected){
+                setFontAsset(mSelectedFontName);
+            }else{
+                setFontAsset(mDefaultFontName);
+            }
+            Log.d("FUKAT", "selected:" + selected + " " + getText());
         }
     }
 }

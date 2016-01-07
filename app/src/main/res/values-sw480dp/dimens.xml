@@ -1,0 +1,9 @@
+<resources>
+
+
+    <string name="screen_size">5.1 MDPI (SWD480)</string>
+
+    <!-- ToolBar -->
+    <dimen name="custom_toolbar_height">70dp</dimen>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Nexus 6 -->
+    <string name="screen_size">nexus6 (SW410)</string>
+
+    <!-- ToolBar -->
+    <dimen name="custom_toolbar_height">70dp</dimen>
+
+</resources>

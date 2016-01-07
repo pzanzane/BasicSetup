@@ -1,63 +1,73 @@
-package com.decos.fixi.helpers;
+package collegify.project.com.collegify.helper;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
-import com.decos.fixi.R;
+import java.util.Random;
+
+import collegify.project.com.collegify.R;
 
 /**
- * Created by pankaj on 18/11/14.
+ * Created by terrilthomas on 05/07/15.
  */
 public class HelperNotification {
 
-    public static void showNotification(Context context, Intent intent, String title, String msg) {
+    public static void showNotification(Context context,String title,String message,PendingIntent pIntent) {
 
-        PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent == null ? new Intent() : intent, 0);
+        NotificationManager notificationManager = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Notification n = new NotificationCompat.Builder(context)
+        Notification n = null;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentTitle(title)
-                .setStyle(
-                        new NotificationCompat.BigTextStyle()
-                                .bigText(msg)
-                )
-                .setContentText(msg)
-                .setSmallIcon(R.drawable.app_icon)
+                .setSmallIcon(R.drawable.calendar)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.calendar))
                 .setContentIntent(pIntent)
-                .setAutoCancel(true).build();
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setAutoCancel(true);
 
 
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+        if (AndroidVersionUtil.isBeforeHoneyComb()) {
+            builder.setContentText(message);
 
-        notificationManager.notify(0, n);
+        } else {
+            builder.setContentText(message);
+            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+        }
 
+        if (AndroidVersionUtil.getAndroidVersion() < 16) {
+            n = builder.getNotification();
+        } else {
+            n = builder.build();
+        }
+        notificationManager.notify(new Random().nextInt(8999),n);
     }
 
 
     public static void registerToNotificationHub(Context context, String userId) {
         DebugHelper.d("WASTE", "In registerToNotificationHub");
-        NotificationHubRegistration registerHub = new NotificationHubRegistration(context, userId);
-        registerHub.registerNotificationHub();
+        //NotificationHubRegistration registerHub = new NotificationHubRegistration(context, userId);
+       // registerHub.registerNotificationHub();
     }
 
 
     public static void unRegisterToNotificationHubAsync(Context context, String userId,String registrationId){
 
         DebugHelper.d("WASTE","In unRegisterToNotificationHub");
-        NotificationHubRegistration registerHub = new NotificationHubRegistration(context,userId);
-        registerHub.unregisterUserAsync(registrationId);
+     //   NotificationHubRegistration registerHub = new NotificationHubRegistration(context,userId);
+     //   registerHub.unregisterUserAsync(registrationId);
     }
 
     public static void unRegisterToNotificationHub(Context context, String userId,String registrationId){
 
         DebugHelper.d("WASTE","In unRegisterToNotificationHub");
-        NotificationHubRegistration registerHub = new NotificationHubRegistration(context,userId);
-        registerHub.unregisterUser(registrationId);
+     //   NotificationHubRegistration registerHub = new NotificationHubRegistration(context,userId);
+     //   registerHub.unregisterUser(registrationId);
 
     }
 }

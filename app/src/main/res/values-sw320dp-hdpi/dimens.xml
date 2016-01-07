@@ -1,0 +1,8 @@
+<resources>
+
+    <!-- Micromax A1-->
+    <string name="screen_size">320 hdpi</string>
+
+    <!-- ToolBar -->
+    <dimen name="custom_toolbar_height">50dp</dimen>
+</resources>

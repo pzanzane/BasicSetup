@@ -1,0 +1,8 @@
+<resources>
+    <!-- Sony xperia Z2-->
+    <string name="screen_size">sw360 xxhdpi</string>
+
+    <!-- ToolBar -->
+    <dimen name="custom_toolbar_height">60dp</dimen>
+
+</resources>

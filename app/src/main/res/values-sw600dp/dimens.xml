@@ -1,0 +1,103 @@
+<resources>
+
+
+    <string name="screen_size">Nexus 7 sw600dp</string>
+    <dimen name="toolbar_circle_width_height">40dp</dimen>
+
+    <!-- ToolBar -->
+    <dimen name="custom_toolbar_height">70dp</dimen>
+    <dimen name="back_btn_margin_left">10dp</dimen>
+    <dimen name="title_margin_left">5dp</dimen>
+    <dimen name="right_text_margin_right">20dp</dimen>
+    <dimen name="points_text_size">@dimen/font_size_14</dimen>
+    <dimen name="text_points_text_size">@dimen/font_size_14</dimen>
+    <dimen name="toolbar_title_text_size">@dimen/font_size_26</dimen>
+    <dimen name="custom_toolbar_logo_width_height">50dp</dimen>
+
+    <!-- Fragment Home -->
+    <dimen name="fragment_home_recharge_btn_padding_left">25dp</dimen>
+    <dimen name="fragment_home_recharge_btn_padding_right">7dp</dimen>
+    <dimen name="fragment_home_recharge_btn_padding_top">3dp</dimen>
+    <dimen name="fragment_home_recharge_btn_padding_bottom">3dp</dimen>
+    <dimen name="fragment_home_rel_top_padding_left">30dp</dimen>
+    <dimen name="fragment_home_rel_top_padding_right">30dp</dimen>
+    <dimen name="fragment_home_rel_top_padding_top">30dp</dimen>
+    <dimen name="fragment_home_rel_top_padding_bottom">20dp</dimen>
+    <dimen name="fragment_home_redeem_point_margin_left">10dp</dimen>
+    <dimen name="fragment_home_text_redeem_point_margin_left">10dp</dimen>
+    <dimen name="fragment_home_text_pending_point_margin_left">10dp</dimen>
+    <dimen name="fragment_home_text_point_margin_left">8dp</dimen>
+    <dimen name="fragment_home_text_point_margin_bottom">10dp</dimen>
+    <dimen name="fragment_home_circle_image_width_height">30dp</dimen>
+    <dimen name="fragment_home_circle_image_margin_left">10dp</dimen>
+    <dimen name="fragment_home_rel_bottom_padding">10dp</dimen>
+
+    <!-- fonts fragment home -->
+    <dimen name="txt_you_have_font_size">@dimen/font_size_20</dimen>
+    <dimen name="txt_point_font_size">@dimen/font_size_64</dimen>
+    <dimen name="txt_textpoint_font_size">@dimen/font_size_20</dimen>
+    <dimen name="txt_recharge_now_font_size">@dimen/font_size_22</dimen>
+    <dimen name="txt_pending_point_font_size">@dimen/font_size_18</dimen>
+    <dimen name="txt_text_pending_point_font_size">@dimen/font_size_18</dimen>
+    <dimen name="txt_redeem_point_font_size">@dimen/font_size_18</dimen>
+    <dimen name="txt_text_redeem_point_font_size">@dimen/font_size_18</dimen>
+    <item name="special_offer_height_weight" type="fraction" format="float">0.65</item>
+    <item name="free_offer_height_weight" type="fraction" format="float">0.35</item>
+    <dimen name="txt_text_recycle_header_font_size">@dimen/font_size_18</dimen>
+
+    <!-- view special offer-->
+    <dimen name="view_special_offer_width">190dp</dimen>
+    <dimen name="view_special_offer_image_width">130dp</dimen>
+    <dimen name="view_special_offer_circle_image_width_height">15dp</dimen>
+    <dimen name="view_special_offer_recharge_btn_padding_left">10dp</dimen>
+    <dimen name="view_special_offer_recharge_btn_padding_right">5dp</dimen>
+    <dimen name="view_special_offer_recharge_btn_padding_top">3dp</dimen>
+    <dimen name="view_special_offer_recharge_btn_padding_bottom">3dp</dimen>
+    <dimen name="view_special_offer_circle_image_margin_left">5dp</dimen>
+    <dimen name="view_special_offer_padding_top">8dp</dimen>
+    <dimen name="view_special_offer_padding_bottom">8dp</dimen>
+    <dimen name="view_special_offer_padding_left">8dp</dimen>
+
+    <!--view free offer -->
+    <dimen name="view_free_offer_circle_image_width_height">15dp</dimen>
+    <dimen name="view_free_offer_circle_image_margin_left">5dp</dimen>
+    <dimen name="view_free_offer_width">190dp</dimen>
+    <dimen name="view_free_offer_image_width_height">50dp</dimen>
+    <dimen name="view_free_offer_padding_top">8dp</dimen>
+    <dimen name="view_free_offer_padding_bottom">8dp</dimen>
+    <dimen name="view_free_offer_padding_left">8dp</dimen>
+    <dimen name="view_free_offer_recharge_btn_padding_left">10dp</dimen>
+    <dimen name="view_free_offer_recharge_btn_padding_right">5dp</dimen>
+    <dimen name="view_free_offer_recharge_btn_padding_top">3dp</dimen>
+    <dimen name="view_free_offer_recharge_btn_padding_bottom">3dp</dimen>
+    <dimen name="view_free_offer_recharge_btn_text_size">@dimen/font_size_14</dimen>
+    <dimen name="view_free_offer_margin_top">10dp</dimen>
+
+    <!-- view_coupon -->
+    <dimen name="view_coupon_height">150dp</dimen>
+    <dimen name="view_coupon_image_banner_height">90dp</dimen>
+    <dimen name="view_coupon_image_brand_height">30dp</dimen>
+    <dimen name="view_coupon_btn_padding_left">15dp</dimen>
+    <dimen name="view_coupon_btn_padding_right">10dp</dimen>
+    <dimen name="view_coupon_btn_padding_top">5dp</dimen>
+    <dimen name="view_coupon_btn_padding_bottom">5dp</dimen>
+    <dimen name="view_coupon_circle_image_width_height">25dp</dimen>
+    <dimen name="view_coupon_circle_image_margin_left">5dp</dimen>
+    <dimen name="view_coupon_btn_margin_bottom">5dp</dimen>
+
+
+    <!-- fonts view special offer-->
+    <dimen name="txt_descr_specialoffer_font_size">@dimen/font_size_18</dimen>
+    <dimen name="txt_descr_freeoffer_font_size">@dimen/font_size_16</dimen>
+    <dimen name="txt_offr_font_size">@dimen/font_size_16</dimen>
+
+    <!-- view_coupon-->
+    <dimen name="view_coupon_btn_font_size">@dimen/font_size_18</dimen>
+
+    <!-- view tab -->
+    <dimen name="view_tab_width_height">40dp</dimen>
+    <dimen name="view_tab_text_size">@dimen/font_size_16</dimen>
+
+    <!-- view_special_offer -->
+    <dimen name="view_special_offer_btn_margin_top">10dp</dimen>
+</resources>
