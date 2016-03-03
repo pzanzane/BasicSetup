@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/pankaj/PankajWorkspace/Projects/BasicSetup/app/src/main/res/values-sw480dp/dimens.xml -->
+    <eat-comment/>
+    <dimen name="custom_toolbar_height">70dp</dimen>
+    <string name="screen_size">5.1 MDPI (SWD480)</string>
+</resources>

@@ -1,17 +1,19 @@
-package com.basicsetup.db.dao;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.wassupondemand.dobe.db.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 
-import com.basicsetup.db.DAO;
-import com.basicsetup.db.DbModel;
-import com.basicsetup.helper.StringUtils;
+import com.wassupondemand.dobe.db.DAO;
+import com.wassupondemand.dobe.db.DbModel;
+import com.wassupondemand.dobe.helpers.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -20,6 +22,7 @@ import com.basicsetup.helper.StringUtils;
  * @param <T>
  *            the generic type of DbModel
  */
+@SuppressWarnings("JavadocReference")
 public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
 
     /** The Constant TAG. */
@@ -238,6 +241,31 @@ public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
 	return result;
     }
 
+	public int getCount(String fieldName, String value){
+
+		int count = 0;
+		Cursor c = null;
+		String squery = "SELECT count(_id) FROM " + getTableName();
+
+		if(!TextUtils.isEmpty(fieldName) && !TextUtils.isEmpty(value)){
+			squery+=" WHERE "
+					+ fieldName + " = ? ";
+		}
+		try {
+			c = db.rawQuery(squery, TextUtils.isEmpty(value)?null:new String[] { value });
+			if (c.moveToFirst()) {
+				count = c.getInt(0);
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+
+		return count;
+	}
     /*
      * (non-Javadoc)
      * 
@@ -266,8 +294,10 @@ public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
 
     public void update(T model) {
 
-	db.update(getTableName(), values(model), getPrimaryColumnName()
-		+ " = ?", whereArgsForId(String.valueOf(model.getPrimaryKey())));
+	db.update(
+			getTableName(), values(model), getPrimaryColumnName()
+					+ " = ?", whereArgsForId(String.valueOf(model.getPrimaryKey()))
+	);
     }
 
     public void update(String primaryKeyValue,ContentValues values) {
@@ -339,8 +369,10 @@ public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
      *             the dAO exception
      */
     public void delete(String id) {
-	db.delete(getTableName(), " " + getPrimaryColumnName() + " = ?",
-		whereArgsForId(id));
+	db.delete(
+			getTableName(), " " + getPrimaryColumnName() + " = ?",
+			whereArgsForId(id)
+	);
     }
 
     /**
@@ -406,9 +438,39 @@ public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
 
     }
 
+	/**
+	 * Find all by order.
+	 *@param orderByCondition
+	 *  order by condition
+	 * @param limit
+	 *  limit number of output, 0 for no limit
+	 * @return the list
+	 */
+	public List<T> findAllByOrder(String orderByCondition,String orderSortCondition,int limit) {
+		Cursor c = null;
+		List<T> result = null;
+		String query = "SELECT * FROM " + getTableName() + (TextUtils.isEmpty(orderByCondition)?"":(" ORDER BY lower("+orderByCondition+")"))
+				+' '+ StringUtils.safe(orderSortCondition)+' '+ (limit>0?(" limit " + limit):"");
+
+		try {
+			c = db.rawQuery(query, null);
+			result = new ArrayList<T>();
+			if (c.moveToFirst()) {
+				do {
+					result.add(fromCursor(c));
+				} while (c.moveToNext());
+			}
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		return result;
+	}
+
     /**
      * Find all.
-     * 
+     *
      * @return the list
      */
     public List<T> findAll(int limit) {
@@ -439,12 +501,12 @@ public abstract class BaseDAO<T extends DbModel> implements DAO<T> {
      *            the order conditions
      * @return the list
      */
-    protected List<T> findAll(String orderConditions) {
+    protected List<T> findAll(String orderByCondition,String orderSortConditions) {
 	Cursor c = null;
 	List<T> result = null;
 	try {
-	    c = db.rawQuery("select * from " + getTableName() + ' '
-		    + StringUtils.safe(orderConditions), null);
+	    c = db.rawQuery("select * from " + getTableName() + ' '+(TextUtils.isEmpty(orderByCondition)?"":(" ORDER BY "+orderByCondition))
+		    +' '+ StringUtils.safe(orderSortConditions), null);
 	    result = new ArrayList<T>();
 	    if (c.moveToFirst()) {
 		do {

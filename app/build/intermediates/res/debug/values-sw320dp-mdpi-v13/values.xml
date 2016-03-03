@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/pankaj/PankajWorkspace/Projects/BasicSetup/app/src/main/res/values-sw320dp-mdpi/dimens.xml -->
+    <eat-comment/>
+    <dimen name="custom_toolbar_height">40dp</dimen>
+    <string name="screen_size">320 mdpi</string>
+</resources>

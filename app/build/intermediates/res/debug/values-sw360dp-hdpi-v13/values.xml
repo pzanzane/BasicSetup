@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/pankaj/PankajWorkspace/Projects/BasicSetup/app/src/main/res/values-sw360dp-hdpi/dimens.xml -->
+    <eat-comment/>
+    <string name="screen_size">sw360 hdpi</string>
+</resources>
