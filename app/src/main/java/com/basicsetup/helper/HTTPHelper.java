@@ -63,7 +63,146 @@ public class HTTPHelper {
     public HTTPHelper(String contentType){
         this.contentType=contentType;
     }
+ public ResponseObject executeHTTPCLIENTPOST(String url, List<String> urlParams,
+                                                ContentValues params) throws URISyntaxException, UnsupportedEncodingException {
 
+        ResponseObject responseObject = null;
+        url += formatUrlParams(urlParams);
+
+        HttpClient httpClient = HTTPClientSingleton.getHttpClient();
+
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.addHeader(AUTH_TOKEN_KEY, authToken);
+        int responseCode = 0;
+
+        try {
+
+
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+            Iterator<String> keySet = params.keySet().iterator();
+
+            while (keySet.hasNext()) {
+                String key = keySet.next();
+                String val = params.getAsString(key);
+
+                nameValuePairs.add(new BasicNameValuePair(key, val));
+
+            }
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpClient.execute(httpPost);
+
+            responseCode = response.getStatusLine().getStatusCode();
+            InputStream inn = response.getEntity().getContent();
+
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(inn)
+            );
+
+            String inputLine;
+            StringBuffer buffResponse = new StringBuffer();
+            String strResponse = null;
+
+            while ((inputLine = in.readLine()) != null) {
+                buffResponse.append(inputLine);
+            }
+            in.close();
+            strResponse = buffResponse.toString();
+            Log.d("WASTE", "PostREsponse:" + strResponse);
+
+
+            responseObject = new ResponseObject(strResponse, responseCode);
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            Log.d("WASTE", "Exception MalformedURLException");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("WASTE", "Exception IOException");
+
+        }
+        return responseObject;
+
+    }
+    
+    public ResponseObject executeHTTPCLIENTGET(String url, List<String> urlParams,
+                                         ContentValues params) throws UnsupportedEncodingException {
+
+        ResponseObject responseObject = null;
+        url += formatUrlParams(urlParams);
+
+        if (params != null) {
+            String strParams = "";
+            if (params != null && params.size() > 0) {
+                if (!url.endsWith("?"))
+                    url += "?";
+                strParams = formatOptionParams(params);
+                url += strParams;
+            }
+        }
+
+        HttpClient httpClient = HTTPClientSingleton.getHttpClient();
+
+        HttpGet httpGet = new HttpGet(url);
+        httpGet.addHeader(AUTH_TOKEN_KEY, authToken);
+        int responseCode = 0;
+
+        try {
+
+
+           /* List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+            Iterator<String> keySet = params.keySet().iterator();
+
+            while (keySet.hasNext()) {
+                String key = keySet.next();
+                String val = params.getAsString(key);
+
+                nameValuePairs.add(new BasicNameValuePair(key, val));
+
+            }*/
+
+            HttpResponse response = httpClient.execute(httpGet);
+
+            responseCode = response.getStatusLine().getStatusCode();
+            InputStream inn = response.getEntity().getContent();
+
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(inn)
+            );
+
+            String inputLine;
+            StringBuffer buffResponse = new StringBuffer();
+            String strResponse = null;
+
+            while ((inputLine = in.readLine()) != null) {
+                buffResponse.append(inputLine);
+            }
+            in.close();
+            strResponse = buffResponse.toString();
+            Log.d("WASTE", "GetREsponse:" + strResponse);
+
+
+            responseObject = new ResponseObject(strResponse, responseCode);
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            Log.d("WASTE", "Exception MalformedURLException");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("WASTE", "Exception IOException");
+
+        }
+        return responseObject;
+    }
+    
+    
     public ResponseObject executeHttpPut(String url,ArrayList<String> urlParams,
                                   ContentValues params)
             throws URISyntaxException, UnsupportedEncodingException {
