@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="custom_toolbar_height">40dp</dimen>
+    <string name="screen_size">320 mdpi</string>
+</resources>

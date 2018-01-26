@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw360dp-xxhdpi-v13\\values-sw360dp-xxhdpi-v13.xml",
+            "map": [
+                {
+                    "source": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\src\\main\\res\\values-sw360dp-xxhdpi\\dimens.xml",
+                    "from": {
+                        "startLines": "5,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "123,45",
+                        "endColumns": "52,52",
+                        "endOffsets": "171,93"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,108",
+                        "endColumns": "52,52",
+                        "endOffsets": "103,156"
+                    }
+                }
+            ]
+        }
+    ]
+}

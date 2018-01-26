@@ -1,11 +1,11 @@
-package com.tech20.mobiledelivery.utils;
+package com.basicsetup.helper;
 
 
 import android.os.Environment;
 import android.util.Log;
 
-import com.tech20.mobiledelivery.executors.AppExecutor;
-import com.tech20.mobiledelivery.helpers.Constants;
+import com.basicsetup.helper.AppExecutor;
+import com.basicsetup.helper.IOUtils;
 
 import java.io.File;
 import java.util.Calendar;
@@ -16,7 +16,7 @@ public class LoggerFile {
     public static String filePath = null;
 
     static {
-        filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"MobileDelivery";
+        filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"BasicSetup";
     }
     public static void d(String tag,String message){
 
@@ -52,8 +52,9 @@ public class LoggerFile {
             builder.append(message);
 
 
-            IOUtils.writeToFile(builder.toString(), filePath,Constants.LogConstants.COMMON_LOG_FILE);
+            IOUtils.writeToFile(builder.toString(), filePath,"COMMON_LOG_FILE");
             IOUtils.writeToFile(builder.toString(), filePath,tag);
+
 
     }
 }

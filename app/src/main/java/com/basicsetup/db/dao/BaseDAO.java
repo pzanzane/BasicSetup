@@ -1,4 +1,4 @@
-package com.wassupondemand.dobe.db.dao;
+package com.basicsetup.db.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.wassupondemand.dobe.db.DAO;
-import com.wassupondemand.dobe.db.DbModel;
-import com.wassupondemand.dobe.helpers.StringUtils;
+
+import com.basicsetup.db.DAO;
+import com.basicsetup.db.DbModel;
+import com.basicsetup.helper.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

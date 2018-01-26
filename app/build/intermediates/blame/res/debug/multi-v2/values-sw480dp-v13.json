@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw480dp-v13\\values-sw480dp-v13.xml",
+            "map": [
+                {
+                    "source": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\src\\main\\res\\values-sw480dp\\dimens.xml",
+                    "from": {
+                        "startLines": "6,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "104,21",
+                        "endColumns": "52,57",
+                        "endOffsets": "152,74"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,108",
+                        "endColumns": "52,57",
+                        "endOffsets": "103,161"
+                    }
+                }
+            ]
+        }
+    ]
+}

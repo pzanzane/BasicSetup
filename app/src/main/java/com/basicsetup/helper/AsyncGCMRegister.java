@@ -1,10 +1,9 @@
-package com.decos.fixi.helpers;
+package com.basicsetup.helper;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-import com.decos.fixi.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.io.IOException;

@@ -1,0 +1,119 @@
+-- Merging decision tree log ---
+manifest
+ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+MERGED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:16:1-26:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:17:1-30:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:1-18:12
+	package
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:2:5-29
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:4:5-30
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:1:11-69
+	android:versionCode
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:3:5-28
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:20:5-22:41
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:6:5-8:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:8:9-38
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:7:9-34
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+		INJECTED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml
+application
+ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:10:5-16:19
+MERGED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:20:5-24:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:24:5-28:19
+	android:label
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:13:9-41
+	android:icon
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:12:9-45
+	android:allowBackup
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:14:9-40
+	android:name
+		ADDED from W:\Workspace\AndroidWorkspace\BasicSetup\app\src\main\AndroidManifest.xml:15:9-60
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services:6.5.87] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\play-services-6.5.87.aar\dd03c0871ce4ed1aa6d56a8ab3b22c3f\AndroidManifest.xml:22:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\eeb2b0f991952d77c0bffd0252d22387\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\1e89a73e6d5214e2d758491f27b68e98\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\cfed2d12d3e5551ee127caddfa39490c\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\2a53ff9e8528623b81fb1c35813fa0fc\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\9603301a1e8b78f9b37a2952cd56a3bd\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\01ddc13e5d9e318e208c75a51e00132b\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\fidel25\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\24c1605ac2c6f470f890b7c5073a62c3\AndroidManifest.xml:26:13-58

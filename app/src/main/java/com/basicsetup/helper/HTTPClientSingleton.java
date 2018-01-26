@@ -1,7 +1,4 @@
-package com.ess.ess.Utils;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
+package com.basicsetup.helper;
 
 /**
  * Created by pankaj on 12/9/16.

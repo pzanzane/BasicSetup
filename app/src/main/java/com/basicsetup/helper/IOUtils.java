@@ -44,13 +44,21 @@ public class IOUtils {
 		
 		return strBuilder.toString();
 	}
-	
-	public static void writeToFile(String info,String filePath){
-		
+
+	public static void writeToFile(String info,String filePath,String fileName){
+
 		FileOutputStream fos;
 		try {
+			File f = new File(filePath);
+			if(!f.exists()){
+				f.mkdirs();
+			}
+			File file = new File(filePath+File.separator+fileName);
+			if(!file.exists()){
+				file.createNewFile();
+			}
 
-			fos = new FileOutputStream(new File(filePath));
+			fos = new FileOutputStream(file,true);
 			fos.write(info.trim()
 					.getBytes());
 			fos.flush();
@@ -58,6 +66,6 @@ public class IOUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
