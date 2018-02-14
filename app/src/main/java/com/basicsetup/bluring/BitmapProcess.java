@@ -35,6 +35,7 @@ public class BitmapProcess {
 		Bitmap waterMark = Bitmap.createScaledBitmap(watermark,
 				bmpImage.getWidth(), bmpImage.getHeight(), false);
 
+
 		Rect rectSrc = new Rect(0, 0, bmpImage.getWidth(), bmpImage.getHeight());
 		Rect rectDst = new Rect(rectSrc);
 
