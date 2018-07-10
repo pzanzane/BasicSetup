@@ -68,4 +68,23 @@ public class IOUtils {
 		}
 
 	}
+	
+	private static void writeFile(Bitmap bmp) {
+
+        AppExecutor.getINSTANCE().getDiskIO().execute(() -> {
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+
+            try {
+                IOUtils.writeBytesToFile(byteArray,
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(),
+                        "dxaccess_profile");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d("WASTE","FileWritten");
+        });
+    }
 }
