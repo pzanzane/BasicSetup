@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt-rPT\\values-pt-rPT.xml",
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-pt-rPT\\common_strings.xml",
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/play-services-6.5.87.aar/b2ea27122662352f93b4ed50e5b1c355/res/values-pt-rPT/common_strings.xml",
                     "from": {
                         "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,46 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/9f85695dfcf19358476c21210e6968cc/res/values-pt-rPT/values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "30",
+                        "startColumns": "4",
+                        "startOffsets": "4416",
+                        "endColumns": "100",
+                        "endOffsets": "4512"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt-rPT\\values-pt-rPT.xml",
+            "map": [
+                {
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-pt-rPT\\common_strings.xml",
+                    "from": {
+                        "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "686,2739,2443,2179,2003,1874,1030,1743,1329,1537,1201,3336,3213,858,3031,2912,309,500,170,3523,3802,3674,4068,2557,2310,4388,4178,4273",
+                        "endColumns": "171,172,113,130,175,128,170,130,207,205,127,186,122,171,181,118,190,185,138,150,265,127,109,181,132,96,94,114",
+                        "endOffsets": "853,2907,2552,2305,2174,1998,1196,1869,1532,1738,1324,3518,3331,1025,3208,3026,495,681,304,3669,4063,3797,4173,2734,2438,4480,4268,4383"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,277,450,564,695,871,1000,1167,1298,1506,1712,1840,2027,2150,2322,2504,2623,2814,3000,3139,3290,3556,3684,3794,3976,4109,4206,4301",
+                        "endColumns": "171,172,113,130,175,128,166,130,207,205,127,186,122,171,181,118,190,185,138,150,265,127,109,181,132,96,94,114",
+                        "endOffsets": "272,445,559,690,866,995,1162,1293,1501,1707,1835,2022,2145,2317,2499,2618,2809,2995,3134,3285,3551,3679,3789,3971,4104,4201,4296,4411"
+                    }
+                },
+                {
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

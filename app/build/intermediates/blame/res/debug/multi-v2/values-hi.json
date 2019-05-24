@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hi\\values-hi.xml",
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hi\\values-hi.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-hi\\common_strings.xml",
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-hi\\common_strings.xml",
                     "from": {
                         "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,46 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-hi\\values-hi.xml",
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-hi\\values-hi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "30",
+                        "startColumns": "4",
+                        "startOffsets": "4284",
+                        "endColumns": "100",
+                        "endOffsets": "4380"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml",
+            "map": [
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/play-services-6.5.87.aar/b2ea27122662352f93b4ed50e5b1c355/res/values-hi/common_strings.xml",
+                    "from": {
+                        "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "680,2670,2374,2112,1936,1808,1019,1683,1320,1500,1198,3252,3132,845,2957,2836,302,495,170,3430,3694,3571,3938,2489,2242,4261,4054,4150",
+                        "endColumns": "164,165,114,129,175,127,178,124,179,182,121,177,119,173,174,120,192,184,131,140,243,122,115,180,131,91,95,110",
+                        "endOffsets": "840,2831,2484,2237,2107,1931,1193,1803,1495,1678,1315,3425,3247,1014,3127,2952,490,675,297,3566,3933,3689,4049,2665,2369,4348,4145,4256"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,270,436,551,681,857,985,1160,1285,1465,1648,1770,1948,2068,2242,2417,2538,2731,2916,3048,3189,3433,3556,3672,3853,3985,4077,4173",
+                        "endColumns": "164,165,114,129,175,127,174,124,179,182,121,177,119,173,174,120,192,184,131,140,243,122,115,180,131,91,95,110",
+                        "endOffsets": "265,431,546,676,852,980,1155,1280,1460,1643,1765,1943,2063,2237,2412,2533,2726,2911,3043,3184,3428,3551,3667,3848,3980,4072,4168,4279"
+                    }
+                },
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/9f85695dfcf19358476c21210e6968cc/res/values-hi/values-hi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

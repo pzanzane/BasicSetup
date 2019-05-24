@@ -1,10 +1,32 @@
 {
     "logs": [
         {
-            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw320dp-mdpi-v13\\values-sw320dp-mdpi-v13.xml",
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw320dp-mdpi-v13/values-sw320dp-mdpi-v13.xml",
             "map": [
                 {
-                    "source": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\src\\main\\res\\values-sw320dp-mdpi\\dimens.xml",
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/app/src/main/res/values-sw320dp-mdpi/dimens.xml",
+                    "from": {
+                        "startLines": "5,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "88,17",
+                        "endColumns": "52,48",
+                        "endOffsets": "136,61"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,108",
+                        "endColumns": "52,48",
+                        "endOffsets": "103,152"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw320dp-mdpi-v13\\values-sw320dp-mdpi-v13.xml",
+            "map": [
+                {
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\src\\main\\res\\values-sw320dp-mdpi\\dimens.xml",
                     "from": {
                         "startLines": "5,2",
                         "startColumns": "4,4",

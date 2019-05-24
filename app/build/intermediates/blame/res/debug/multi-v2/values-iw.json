@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-iw\\common_strings.xml",
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/play-services-6.5.87.aar/b2ea27122662352f93b4ed50e5b1c355/res/values-iw/common_strings.xml",
                     "from": {
                         "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,46 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-iw\\values-iw.xml",
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/9f85695dfcf19358476c21210e6968cc/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "102",
+                        "endOffsets": "153"
+                    },
+                    "to": {
+                        "startLines": "30",
+                        "startColumns": "4",
+                        "startOffsets": "4043",
+                        "endColumns": "102",
+                        "endOffsets": "4141"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/W:\\Workspace\\AndroidWorkspace\\BasicSetup\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "map": [
+                {
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-6.5.87.aar\\dd03c0871ce4ed1aa6d56a8ab3b22c3f\\res\\values-iw\\common_strings.xml",
+                    "from": {
+                        "startLines": "6,19,17,15,14,13,8,12,10,11,9,23,22,7,21,20,4,5,3,24,26,25,27,18,16,30,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "653,2536,2272,2019,1864,1740,974,1612,1273,1442,1148,3079,2957,814,2801,2684,303,480,170,3233,3493,3369,3717,2383,2147,4023,3822,3912",
+                        "endColumns": "160,147,110,127,154,123,173,127,168,169,124,153,121,159,155,116,176,172,132,135,223,123,104,152,124,88,89,110",
+                        "endOffsets": "809,2679,2378,2142,2014,1859,1143,1735,1437,1607,1268,3228,3074,969,2952,2796,475,648,298,3364,3712,3488,3817,2531,2267,4107,3907,4018"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,266,414,525,653,808,932,1102,1230,1399,1569,1694,1848,1970,2130,2286,2403,2580,2753,2886,3022,3246,3370,3475,3628,3753,3842,3932",
+                        "endColumns": "160,147,110,127,154,123,169,127,168,169,124,153,121,159,155,116,176,172,132,135,223,123,104,152,124,88,89,110",
+                        "endOffsets": "261,409,520,648,803,927,1097,1225,1394,1564,1689,1843,1965,2125,2281,2398,2575,2748,2881,3017,3241,3365,3470,3623,3748,3837,3927,4038"
+                    }
+                },
+                {
+                    "source": "/Volumes/Development/Projects/AndroidWorkspace/BasicSetup/C:\\Users\\fidel25\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9603301a1e8b78f9b37a2952cd56a3bd\\res\\values-iw\\values-iw.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
