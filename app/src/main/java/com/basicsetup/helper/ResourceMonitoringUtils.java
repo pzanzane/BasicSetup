@@ -24,6 +24,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 
 import com.anisolutions.BeanLogin.enums.EnumBatteryChargingStatus;
+import com.anisolutions.BeanLogin.helpers.ExternalStorageInfoUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -404,141 +405,110 @@ public class ResourceMonitoringUtils {
         return batteryPercentage;
     }
 
-    /************ Get Storage information of the device and apps **********/
-    public static boolean externalMemoryAvailable() {
-        boolean mExternalStorageAvailable = false;
-        Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
-        Boolean isSDSupportedDevice = Environment.isExternalStorageRemovable();
 
-        if (isSDPresent && isSDSupportedDevice) {
-            mExternalStorageAvailable = true;
-        } else {
-            mExternalStorageAvailable = false;
+
+    public static long getAvailableInternalMemorySize(Context context) {
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = externalStorageInfoUtils
+                .getInternalAvailableMemory();
+
+        return memeory;
+    }
+
+    public static long getUsedInternalStorage(Context context) {
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = (externalStorageInfoUtils
+                .getInternalTotalMemory() -
+                externalStorageInfoUtils
+                        .getInternalAvailableMemory());
+        return memeory;
+
+    }
+
+    public static float getUsedInternalStorageInPercent(Context context) {
+
+        long used = getUsedInternalStorage(context);
+        long total = getTotalInternalMemorySize(context);
+
+        if(total<=0){
+            return 0;
         }
-
-        return mExternalStorageAvailable;
+        return ((used * 100) / total);
     }
 
-    public static String getAvailableInternalMemorySize() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSizeLong();
-        long availableBlocks = stat.getAvailableBlocksLong();
-        return formatSize(availableBlocks * blockSize);
-    }
+    public static float getFreeInternalStorageInPercent(Context context) {
 
-    public static String getUsedInternalStorage() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSizeLong();
-        long availableBlocks = stat.getAvailableBlocksLong();
-        long totalBlocks = stat.getBlockCountLong();
-        long usedInternalStorage = totalBlocks - availableBlocks;
-        return formatSize(usedInternalStorage * blockSize);
-    }
+        long available = getAvailableInternalMemorySize(context);
+        long total = getTotalInternalMemorySize(context);
 
-    public static int getUsedInternalStorageInPercent() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long availableBlocks = stat.getAvailableBlocksLong();
-        long totalBlocks = stat.getBlockCountLong();
-        long usedInternalStorage = totalBlocks - availableBlocks;
-        int percent = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            percent = Math.toIntExact((usedInternalStorage * 100) / totalBlocks);
+        if(total<=0){
+            return 0;
         }
-        return percent;
+        return ((available * 100) / total);
+
     }
 
-    public static int getFreeInternalStorageInPercent() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long availableBlocks = stat.getAvailableBlocksLong();
-        long totalBlocks = stat.getBlockCountLong();
-        int percent = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            percent = Math.toIntExact((availableBlocks * 100) / totalBlocks);
+    public static long getTotalInternalMemorySize(Context context) {
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = externalStorageInfoUtils
+                .getInternalTotalMemory();
+
+        return memeory;
+    }
+
+    public static long getAvailableExternalMemorySize(Context context) {
+
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = externalStorageInfoUtils
+                .getExternalAvailableMemory();
+
+        return memeory;
+    }
+
+    public static long getUsedExternalStorage(Context context) {
+
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = (externalStorageInfoUtils
+                .getExternalTotalMemory() -
+                externalStorageInfoUtils
+                        .getExternalAvailableMemory());
+
+        return memeory;
+    }
+
+    public static long getTotalExternalMemorySize(Context context) {
+        long memeory = 0;
+        ExternalStorageInfoUtils externalStorageInfoUtils = ExternalStorageInfoUtils.getSingletone(context);
+        memeory = externalStorageInfoUtils
+                .getExternalTotalMemory();
+
+        return memeory;
+    }
+
+    public static float getUsedExternalStorageInPercent(Context context) {
+
+        long used = getUsedExternalStorage(context);
+        long total = getTotalExternalMemorySize(context);
+        if(total<=0){
+            return 0;
         }
-        return percent;
+        return ((used * 100) / total);
     }
 
-    public static String getTotalInternalMemorySize() {
-        File path = Environment.getDataDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSizeLong();
-        long totalBlocks = stat.getBlockCountLong();
-        return formatSize(totalBlocks * blockSize);
-    }
+    public static float getFreeExternalStorageInPercent(Context context) {
 
-    public static String getAvailableExternalMemorySize() {
-        if (externalMemoryAvailable()) {
-            File path = Environment.getExternalStorageDirectory();
-            StatFs stat = new StatFs(path.getPath());
-            long blockSize = stat.getBlockSizeLong();
-            long availableBlocks = stat.getAvailableBlocksLong();
-            return formatSize(availableBlocks * blockSize);
-        } else {
-            return "N/A";
+        long available = getAvailableExternalMemorySize(context);
+        long total = getTotalExternalMemorySize(context);
+
+        if(total<=0){
+            return 0;
         }
-    }
-
-    public static String getUsedExternalStorage() {
-        int percent = 0;
-        if (externalMemoryAvailable()) {
-            File path = Environment.getExternalStorageDirectory();
-            StatFs stat = new StatFs(path.getPath());
-            long blockSize = stat.getBlockSizeLong();
-            long totalBlocks = stat.getBlockCountLong();
-            long availableBlocks = stat.getAvailableBlocksLong();
-            long usedBlocks = totalBlocks - availableBlocks;
-            return formatSize(usedBlocks * blockSize);
-        } else {
-            return "N/A";
-        }
-    }
-
-    public static String getTotalExternalMemorySize() {
-        if (externalMemoryAvailable()) {
-            File path = Environment.getExternalStorageDirectory();
-            StatFs stat = new StatFs(path.getPath());
-            long blockSize = stat.getBlockSizeLong();
-            long totalBlocks = stat.getBlockCountLong();
-            return formatSize(totalBlocks * blockSize);
-        } else {
-            return "N/A";
-        }
-    }
-
-    public static int getUsedExternalStorageInPercent() {
-        int percent = 0;
-        if (externalMemoryAvailable()) {
-            File path = Environment.getExternalStorageDirectory();
-            StatFs stat = new StatFs(path.getPath());
-            long totalBlocks = stat.getBlockCountLong();
-            long availableBlocks = stat.getAvailableBlocksLong();
-            long usedBlocks = totalBlocks - availableBlocks;
-
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                percent = Math.toIntExact((usedBlocks * 100) / totalBlocks);
-            }
-        }
-
-        return percent;
-    }
-
-    public static int getFreeExternalStorageInPercent() {
-        int percent = 0;
-        if (externalMemoryAvailable()) {
-            File path = Environment.getExternalStorageDirectory();
-            StatFs stat = new StatFs(path.getPath());
-            long totalBlocks = stat.getBlockCountLong();
-            long availableBlocks = stat.getAvailableBlocksLong();
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                percent = Math.toIntExact((availableBlocks * 100) / totalBlocks);
-            }
-        }
-
-        return percent;
+        return ((available * 100) / total);
     }
 
 
